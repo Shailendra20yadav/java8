@@ -1,4 +1,3 @@
-
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -10,10 +9,9 @@ public class MapOperation {
   }
 
     private static void sortMap() {
-        Employee e1 = new Employee(101, "CHETAN", 3000);
         HashMap<Integer, Employee> hm  = new HashMap<>();
-        hm.put(101, e1);
-        hm .put(100,new Employee(100,"abc", 1000));
+        hm.put(100, new Employee(100, "chetan", 3000));
+        hm .put(101,new Employee(101,"abc", 1000));
 
         System.out.println("Sort by value");
 
@@ -86,8 +84,3 @@ class Employee
         this.salary = salary;
     }
 }
-
-
-
-
-
