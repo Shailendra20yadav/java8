@@ -1,49 +1,57 @@
-import java.util.*;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class MapOperation {
 
-  public static void main(String[] args) {
+	public static void main(String[] args) {
 
-      sortMap();
-  }
+		sortMap();
+	}
 
-    private static void sortMap() {
-        HashMap<Integer, Employee> hm  = new HashMap<>();
-        hm.put(100, new Employee(100, "chetan", 3000));
-        hm .put(101,new Employee(101,"abc", 1000));
+	private static void sortMap() {
+		HashMap<Integer, Employee> hm = new HashMap<>();
+		hm.put(100, new Employee(100, "chetan", 3000));
+		hm.put(101, new Employee(101, "abc", 1000));
 
-        System.out.println("Sort by value");
+		System.out.println("Sort by value");
 
-        hm.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.comparing(Employee::getName))).forEach(e->{
-            System.out.println(e.getKey()+"= "+e.getValue().getName());
-        });
+		hm.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.comparing(Employee::getName)))
+				.forEach(e -> {
+					System.out.println(e.getKey() + "= " + e.getValue().getName());
+				});
 
-        HashMap<Integer, Employee> hm2 = hm.entrySet().stream()
-                .sorted(Comparator.comparing(Map.Entry::getKey))
-                .collect(Collectors.toMap(en -> en.getKey(), en ->en.getValue(), (en1,en2)->en1, LinkedHashMap::new));
-        System.out.println("Sort by key");
-        hm2.entrySet().forEach(e->{
+		HashMap<Integer, Employee> hm2 = hm.entrySet().stream().sorted(Comparator.comparing(Map.Entry::getKey)).collect(
+				Collectors.toMap(en -> en.getKey(), en -> en.getValue(), (en1, en2) -> en1, LinkedHashMap::new));
+		System.out.println("Sort by key");
+		hm2.entrySet().forEach(e -> {
 
-            System.out.println(e.getKey()+"= "+e.getValue().getName());
+			System.out.println(e.getKey() + "= " + e.getValue().getName());
 
-        });
+		});
 
-        //
-    }
+		//
+	}
 
-    private static void convertListToMap(){
+	private static void convertListToMap() {
 
-        List<Employee> list = List.of(new Employee(1,"test",1000));
+		List<Employee> list = List.of(new Employee(1, "test", 1000));
 
-        Map<Integer,String> map = list.stream().filter(Objects::nonNull).collect(Collectors.toMap(Employee::getId,Employee::getName));
+		Map<Integer, String> map = list.stream().filter(Objects::nonNull)
+				.collect(Collectors.toMap(Employee::getId, Employee::getName));
 
-        //
+		//
 
-        Optional<String> op = Optional.ofNullable("Test");
-        op.ifPresentOrElse(s -> s.toLowerCase(Locale.ROOT), () -> op.orElseThrow());
+		Optional<String> op = Optional.ofNullable("Test");
+		op.ifPresentOrElse(s -> s.toLowerCase(Locale.ROOT), () -> op.orElseThrow());
 
-    }
+	}
 
 }
 
