@@ -21,7 +21,7 @@ public class TestCustomLinkedList {
 		strList.add("Hello how are you");
 		strList.add("Hello world !");
 		
-		System.out.println(strList);
+		System.out.println(strList + "Size = " +strList.getSize());
 
 	}
 

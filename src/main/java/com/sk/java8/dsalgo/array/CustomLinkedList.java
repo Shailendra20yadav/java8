@@ -13,6 +13,8 @@ public class CustomLinkedList<E> {
 	}
 
 	private Node<E> root;
+	
+	private int size =0;
 
 	public static <T> CustomLinkedList<T> createFromArray(T[] arr) {
 		CustomLinkedList<T> linkedlist = new CustomLinkedList<>();
@@ -28,6 +30,7 @@ public class CustomLinkedList<E> {
 		Node<E> tmp = new Node<>(data);
 		if (root == null) {
 			root = tmp;
+			size++;
 			return;
 		}
 
@@ -36,7 +39,36 @@ public class CustomLinkedList<E> {
 			last = last.next;
 		}
 		last.next = tmp;
+		size++;
 
+	}
+	
+	public boolean remove (E data) {
+		if(size ==0)
+			return false;
+		Node<E> first = root;
+		if(first.data ==data || first.data.equals(data) && size ==1) {
+			first.data =null; 
+			size--;
+			return true;
+		}
+		boolean result =false;
+		if(first.data ==data || first.data.equals(data)){
+			size--;
+			root= first.next;
+			return true;
+		}
+		while(first.next !=null) {
+			Node<E> next = first.next;
+			
+		}
+		
+		return result;
+
+	}
+
+	public int getSize() {
+		return size;
 	}
 
 	@Override
